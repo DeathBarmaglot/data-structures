@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8c5fa9f4-1a8a-4864-b438-f19065d973c3" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="241" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="ArrayStackTest.testPushAndPop" />
+    </enabled-run-configurations>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="205VneSpSBg7feZIYF9KbNXTDNQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RunManager" selected="JUnit.ArrayStackTest">
+    <configuration name="ArrayStackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="data-structures" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.luxoft.datastructures.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.luxoft.datastructures.stack" />
+      <option name="MAIN_CLASS_NAME" value="com.luxoft.datastructures.stack.ArrayStackTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayStackTest.testContainsReturnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="data-structures" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.luxoft.datastructures.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.luxoft.datastructures.stack" />
+      <option name="MAIN_CLASS_NAME" value="com.luxoft.datastructures.stack.ArrayStackTest" />
+      <option name="METHOD_NAME" value="testContainsReturnTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayStackTest.testIsEmptyAfterClearReturnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="data-structures" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.luxoft.datastructures.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.luxoft.datastructures.stack" />
+      <option name="MAIN_CLASS_NAME" value="com.luxoft.datastructures.stack.ArrayStackTest" />
+      <option name="METHOD_NAME" value="testIsEmptyAfterClearReturnTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayStackTest.testPushAndPeek" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="data-structures" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.luxoft.datastructures.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.luxoft.datastructures.stack" />
+      <option name="MAIN_CLASS_NAME" value="com.luxoft.datastructures.stack.ArrayStackTest" />
+      <option name="METHOD_NAME" value="testPushAndPeek" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArrayStackTest.testPushAndPopAndCheckSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="data-structures" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.luxoft.datastructures.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.luxoft.datastructures.stack" />
+      <option name="MAIN_CLASS_NAME" value="com.luxoft.datastructures.stack.ArrayStackTest" />
+      <option name="METHOD_NAME" value="testPushAndPopAndCheckSize" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ArrayStackTest" />
+        <item itemvalue="JUnit.ArrayStackTest.testPushAndPeek" />
+        <item itemvalue="JUnit.ArrayStackTest.testIsEmptyAfterClearReturnTrue" />
+        <item itemvalue="JUnit.ArrayStackTest.testContainsReturnTrue" />
+        <item itemvalue="JUnit.ArrayStackTest.testPushAndPopAndCheckSize" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c5fa9f4-1a8a-4864-b438-f19065d973c3" name="Default Changelist" comment="" />
+      <created>1635334603162</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635334603162</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="92" y="92" width="1736" height="896" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1635412561381">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="92" y="92" width="1736" height="896" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635412561381" />
+    <state x="765" y="255" key="#com.intellij.ide.util.MemberChooser" timestamp="1635336194944">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="765" y="255" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635336194944" />
+    <state width="1876" height="290" key="GridCell.Tab.0.bottom" timestamp="1635425047136">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="290" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635425047136" />
+    <state width="1876" height="290" key="GridCell.Tab.0.center" timestamp="1635425047136">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="290" key="GridCell.Tab.0.center/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635425047136" />
+    <state width="1876" height="290" key="GridCell.Tab.0.left" timestamp="1635425047135">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="290" key="GridCell.Tab.0.left/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635425047135" />
+    <state width="1876" height="290" key="GridCell.Tab.0.right" timestamp="1635425047136">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="290" key="GridCell.Tab.0.right/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635425047136" />
+    <state width="1876" height="358" key="GridCell.Tab.1.bottom" timestamp="1635417175570">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="358" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635417175570" />
+    <state width="1876" height="358" key="GridCell.Tab.1.center" timestamp="1635417175570">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="358" key="GridCell.Tab.1.center/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635417175570" />
+    <state width="1876" height="358" key="GridCell.Tab.1.left" timestamp="1635417175570">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="358" key="GridCell.Tab.1.left/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635417175570" />
+    <state width="1876" height="358" key="GridCell.Tab.1.right" timestamp="1635417175570">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1876" height="358" key="GridCell.Tab.1.right/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635417175570" />
+    <state x="800" y="140" key="SettingsEditor" timestamp="1635337694136">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="800" y="140" key="SettingsEditor/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635337694136" />
+    <state x="601" y="255" width="700" height="530" key="recent.locations.popup" timestamp="1635424340841">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="601" y="255" width="700" height="530" key="recent.locations.popup/0.0.1920.1080/1920.312.1360.768@0.0.1920.1080" timestamp="1635424340841" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/data_structures$ArrayStackTest_testPushAndPop.ic" NAME="ArrayStackTest.testPushAndPop Coverage Results" MODIFIED="1635416004528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.luxoft.datastructures.stack.*</FILTER>
+    </SUITE>
+  </component>
+</project>
