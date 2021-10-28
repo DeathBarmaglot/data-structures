@@ -5,6 +5,33 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayStackTest {
+
+	@Test
+    public void testPushOverStackCapacity(){
+        ArrayStack arrayStack = new ArrayStack(2);
+        arrayStack.push("A");
+        arrayStack.push("B");
+        arrayStack.push("C");
+        assertEquals(3, arrayStack.size());
+        assertEquals("C", arrayStack.pop());
+        assertEquals("B", arrayStack.pop());
+        assertEquals("A", arrayStack.pop());
+        assertEquals(0, arrayStack.size());
+        assertTrue(arrayStack.isEmpty());
+
+  //       for (int i = 0; i<15;i++ ) {
+  //       arrayStack.push(i);	
+  //       }
+  //       assertEquals(15, arrayStack.size());
+		// for (int i = 14; i>=0;i--) {
+  //       assertEquals(i, arrayStack.pop());
+  //       }
+  //       assertEquals(0, arrayStack.size());
+  //       assertTrue(arrayStack.isEmpty());
+
+    }
+
+
     @Test
     public void testPushAndPopAndCheckSize(){
         ArrayStack arrayStack = new ArrayStack();
@@ -33,6 +60,8 @@ public class ArrayStackTest {
         ArrayStack arrayStack = new ArrayStack();
         assertTrue(arrayStack.isEmpty());
     }
+
+
 
     @Test
     public void testIsEmptyInNewStackReturnFalse(){
@@ -75,9 +104,7 @@ public class ArrayStackTest {
     @Test
     public void testThrowIllegalStateExceptionOnPopStack(){
         ArrayStack arrayStack = new ArrayStack();
-        Assertions.assertThrows(IllegalStateException.class, () -> {
-            arrayStack.pop();
-        });
+        Assertions.assertThrows(IllegalStateException.class, arrayStack::pop);
 
     }
 

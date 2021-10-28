@@ -4,12 +4,29 @@ public class ArrayStack implements Stack {
     private int size;
     private Object[] array;
     public ArrayStack(){
-    array = new Object[10];
-}
+    array = new Object[5];
+    }   
+    public ArrayStack(int initialCapacity){
+    array = new Object[initialCapacity];
+    }   
+    
+
+
     @Override
     public void push(Object value) {
+        ensureCapacity();
         array[size] = value;
     size++;
+    }
+
+    private void ensureCapacity(){
+        if (array.length == size){
+        Object[] newArray = new Object[array.length*2];
+            for (int i = 0; i < size; i++) {
+                newArray[i] = array[i];
+            }
+        array = newArray;
+        }
     }
 
     @Override
@@ -26,7 +43,7 @@ public class ArrayStack implements Stack {
     }
     @Override
     public boolean contain(Object value) {
-        for (int i = 0; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
             if(value.equals(array[i])){
                 return true;
             }
