@@ -18,17 +18,6 @@ public class ArrayStackTest {
         assertEquals("A", arrayStack.pop());
         assertEquals(0, arrayStack.size());
         assertTrue(arrayStack.isEmpty());
-
-  //       for (int i = 0; i<15;i++ ) {
-  //       arrayStack.push(i);	
-  //       }
-  //       assertEquals(15, arrayStack.size());
-		// for (int i = 14; i>=0;i--) {
-  //       assertEquals(i, arrayStack.pop());
-  //       }
-  //       assertEquals(0, arrayStack.size());
-  //       assertTrue(arrayStack.isEmpty());
-
     }
 
 

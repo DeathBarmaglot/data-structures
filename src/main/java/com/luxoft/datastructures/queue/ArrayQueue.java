@@ -12,14 +12,14 @@ public class ArrayQueue implements Queue {
 
     @Override
     public void enqueue(Object value) {
-    array[array.length-1] = value;
+    array[size] = value;
     size++;
     }
 
     @Override
     public Object dequeue() {
     	if (size == 0){
-        return null;}
+        return new IllegalStateException("Queue is Empty");}
         else {
         	Object result = array[size-1];
         	array[size-1] = null;
@@ -47,7 +47,7 @@ public class ArrayQueue implements Queue {
 
     @Override
     public boolean contains(Object value) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < array.length; i++) {
             if(value.equals(array[i])){
                 return true;
             }
