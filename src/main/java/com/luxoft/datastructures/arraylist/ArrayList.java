@@ -51,15 +51,21 @@ public class ArrayList implements List{
 
     @Override
     public Object remove(int index) {
+//                System.arraycopy(array,index+1, array, index, size - index -1);
 
         checkMaxSize(index);
 
-        if (index > 0) {
-            System.arraycopy(array,index+1, array, index, size -index -1);
-            size--;
+        Object result = array[index];
 
+        if (index >= 0) {
+            for (int i = index; i < size; i++) {
+                array[i] = array[i+1];
+            }
         }
-        return array;
+        array[size-1] = null;
+        size--;
+
+        return result;
     }
 
 

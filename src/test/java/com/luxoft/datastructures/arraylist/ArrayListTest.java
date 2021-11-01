@@ -19,10 +19,35 @@ ArrayList arrayList = new ArrayList();
         assertEquals(4,arrayList.size());
 }
 
+    @Test
+    public void testRemoveDefault(){
+        arrayList.add("A");
+        arrayList.add("B");
+        arrayList.add("C");
+        assertEquals(3,arrayList.size());
+        arrayList.remove(0);
+//        assertEquals("A",arrayList.get(0));
+        assertEquals(2,arrayList.size());
+        assertEquals("B",arrayList.get(0));
+        assertEquals("C",arrayList.get(1));
+    }
+
+    @Test
+    public void testRemove(){
+        arrayList.add("A");
+        arrayList.add("B",1);
+        assertEquals(2,arrayList.size());
+        arrayList.remove(1);
+        assertEquals(1,arrayList.size());
+        assertEquals("A",arrayList.get(0));
+    }
+
+
+
+
 //    // we can add value by index between [0, size]
 //    // otherwise throw new IndexOutOfBoundsException
-//    void add(Object value, int index);
-//
+
 //    // we can remove value by index between [0, size - 1]
 //    // otherwise throw new IndexOutOfBoundsException
 //
