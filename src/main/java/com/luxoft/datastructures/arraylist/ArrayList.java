@@ -1,52 +1,90 @@
 package com.luxoft.datastructures.arraylist;
 
+import java.util.StringJoiner;
+
 public class ArrayList implements List{
     private int size;
-    private Object[][] array = new Object[10][10];
+    private Object[] array = new Object[10];
 
     @Override
     public void add(Object value) {
     add(value, size);
     }
 
+
     @Override
     public void add(Object value, int index) {
-        if (value != null){
-        array[index][size] = value;
-        size++;
-        }
-        if (index>size){
-            throw new IndexOutOfBoundsException();
+        if (index==size){
+            capacity();
         }
 
+        checkNull(value);
+//        System.arraycopy(array,index, array, index-1, size -index);
+
+        for (int i = size; i > index; i--){
+            array[i] = array[i-1];
+        }
+
+        size++;
+        array[index] = value;
     }
+
+
+    private void capacity() {
+        Object[] newArray = new Object[array.length*2];
+        System.arraycopy(array,0,newArray,0,array.length);
+        array = newArray;
+    }
+
+    private void checkMaxSize(int index) {
+        if(index >= size) {
+            throw new IndexOutOfBoundsException("Index "+ index + " more than size ArrayList");
+        }
+    }
+
+    private void checkNull(Object value) {
+        if(value ==null){
+            throw  new NullPointerException("Null element in value");
+        }
+    }
+
 
     @Override
     public Object remove(int index) {
-        Object[] result = array[index];
-        for (int i = 0; i < result.length ; i++) {
-            array[index][i] = null;
+
+        checkMaxSize(index);
+
+        if (index > 0) {
+            System.arraycopy(array,index+1, array, index, size -index -1);
+            size--;
+
         }
-        return result;
+        return array;
     }
+
 
     @Override
     public Object get(int index) {
+        checkMaxSize(index);
         return array[index];
     }
 
     @Override
     public Object set(Object value, int index) {
-        return null;
+
+        checkMaxSize(index);
+        checkNull(value);
+
+        Object result = array[index];
+        array[index] = value;
+        return result;
     }
 
     @Override
     public void clear() {
-        for (int i = 0; i < array.length ; i++) {
-            for (int j = 0; j < array[i].length ; j++) {
-            array[i][j] = null;}
-        }
-        size=0;
+        for (int i = 0; i < array.length; i++) {
+            array[i]= null;}
+        size = 0;
     }
 
     @Override
@@ -59,28 +97,44 @@ public class ArrayList implements List{
         return size == 0;
     }
 
-//    // [A, B, A, C] lastIndexOf(A) -> 2
-//    int lastIndexOf(Object value);
-//
-//    // [A, B, C]
-//    String toString();
     @Override
     public boolean contains(Object value) {
-        for (int i = 0; i < array.length ; i++) {
-            for (int j = 0; j < array[j].length ; j++) {
-                if(array[i][j].equals(value)) return true;
-            }
-        }
-        return false;
+        checkNull(value);
+        return indexOf(value) != -1;
     }
 
     @Override
     public int indexOf(Object value) {
-        return 0;
+
+        checkNull(value);
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(value)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object value) {
-        return 0;
+
+        checkNull(value);
+
+        for (int i = size-1; i >= 0; i--){
+            if (array[i].equals(value)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(", ","[","}");
+        for (int i = 0; i < size; i++) {
+            stringJoiner.add(array[i].toString());
+        }
+        return stringJoiner.toString();
     }
 }
