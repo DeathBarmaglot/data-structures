@@ -19,9 +19,9 @@ public class ArrayList implements List{
         }
 
         checkNull(value);
-//        System.arraycopy(array,index, array, index-1, size -index);
+//        System.arraycopy(array,index-1, array, index, size -index);
 
-        for (int i = size; i > index; i--){
+            for (int i = size; i > index; i--){
             array[i] = array[i-1];
         }
 

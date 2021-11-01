@@ -1,8 +1,10 @@
 package com.luxoft.datastructures.arraylist;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 // Abstract Data Type
 public class ArrayListTest {
@@ -54,4 +56,34 @@ ArrayList arrayList = new ArrayList();
 //
 //    // [A, B, C]
 //    String toString();
-}
+
+    @Test
+    public void testArrayIndexBoundsExceptionLessThenSize(){
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(1, -1);
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> {arrayList.add(1,-1);});
+
+        message.getMessage();
+    }
+
+    @Test
+    public void testIndexBoundsExceptionMoreThenSize(){
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(1);
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> {arrayList.add(2,2);});
+
+        message.getMessage();
+    }
+
+    @Test
+    public void testThrowsIndexOut(){
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(1);
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> {arrayList.get(1);});
+        assertEquals(1, arrayList.size());
+        message.getMessage();
+        }
+    }
