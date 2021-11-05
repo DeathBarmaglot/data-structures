@@ -1,6 +1,8 @@
 package com.luxoft.datastructures.arraylist;
 
+import java.util.Arrays;
 import java.util.StringJoiner;
+import java.util.stream.IntStream;
 
 public class ArrayList implements List{
     private int size;
@@ -19,11 +21,7 @@ public class ArrayList implements List{
         }
 
         checkNull(value);
-//        System.arraycopy(array,index-1, array, index, size -index);
-
-            for (int i = size; i > index; i--){
-            array[i] = array[i-1];
-        }
+        if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
 
         size++;
         array[index] = value;
@@ -57,11 +55,7 @@ public class ArrayList implements List{
 
         Object result = array[index];
 
-        if (index >= 0) {
-            for (int i = index; i < size; i++) {
-                array[i] = array[i+1];
-            }
-        }
+        IntStream.range(index, size).forEach(i -> array[i] = array[i + 1]);
         array[size-1] = null;
         size--;
 
@@ -88,8 +82,7 @@ public class ArrayList implements List{
 
     @Override
     public void clear() {
-        for (int i = 0; i < array.length; i++) {
-            array[i]= null;}
+        Arrays.fill(array, null);
         size = 0;
     }
 
@@ -137,7 +130,7 @@ public class ArrayList implements List{
 
     @Override
     public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(", ","[","}");
+        StringJoiner stringJoiner = new StringJoiner(", ","[","]");
         for (int i = 0; i < size; i++) {
             stringJoiner.add(array[i].toString());
         }
