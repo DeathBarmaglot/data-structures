@@ -49,7 +49,6 @@ public class ArrayList implements List{
 
     @Override
     public Object remove(int index) {
-//                System.arraycopy(array,index+1, array, index, size - index -1);
 
         checkMaxSize(index);
 

@@ -2,14 +2,50 @@ package com.luxoft.datastructures.list;
 
 public class DoubleLinkedList implements List {
 
+    Node head;
+    Node tail;
+    int size;
+
+//    @Override
+//    public void add(Object value) {
+//    add(value, size);
+//    }
+
     @Override
     public void add(Object value) {
-
+        add(value, size);
     }
 
     @Override
     public void add(Object value, int index) {
+        checkNull(value);
+        checkMaxSize(index);
 
+        Node newNode = new Node(value);
+        if (size == 0) {
+            head = tail = newNode;
+        } else if (index == size - 1) {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        } else if (index == 0) {
+            head.prev = newNode;
+            newNode.next = head;
+            head = newNode;
+        }
+        size++;
+    }
+
+    private void checkNull(Object value) {
+        if(value == null){
+            throw  new NullPointerException("Null element in value");
+        }
+    }
+
+    private void checkMaxSize(int index) {
+        if(index >= size) {
+            throw new IndexOutOfBoundsException("Index "+ index + " more than size ArrayList");
+        }
     }
 
     @Override
@@ -34,7 +70,7 @@ public class DoubleLinkedList implements List {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override

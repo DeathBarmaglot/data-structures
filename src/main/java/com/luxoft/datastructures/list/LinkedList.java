@@ -2,10 +2,6 @@ package com.luxoft.datastructures.list;
 
 public class LinkedList implements List {
 
-    Node head;
-    Node tail;
-    int size;
-
     @Override
     public void add(Object value) {
 
@@ -13,18 +9,7 @@ public class LinkedList implements List {
 
     @Override
     public void add(Object value, int index) {
-        Node newNode = new Node(value);
-        if (size == 0) {
-            head = tail = newNode;
-        } else if (index == size - 1) {
-            tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
-        } else if (index == 0) {
-            head.prev = newNode;
-            newNode.next = head;
-            head = newNode;
-        }
+
     }
 
     @Override
