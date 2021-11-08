@@ -1,4 +1,4 @@
-package com.luxoft.datastructures.arraylist;
+package com.luxoft.datastructures.list;
 
 // Abstract Data Type
 public interface List {

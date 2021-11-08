@@ -1,9 +1,8 @@
-package com.luxoft.datastructures.arraylist;
+package com.luxoft.datastructures.list;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-// Abstract Data Type
 public class ArrayListTest {
     ArrayList arrayList = new ArrayList();
 

@@ -1,4 +1,4 @@
-package com.luxoft.datastructures.arraylist;
+package com.luxoft.datastructures.list;
 
 import java.util.Arrays;
 import java.util.StringJoiner;

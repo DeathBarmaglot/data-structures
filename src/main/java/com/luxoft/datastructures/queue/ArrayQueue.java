@@ -1,10 +1,5 @@
 package com.luxoft.datastructures.queue;
-//NoSuchElementException
-//remove
-//peek 0 -> null 
-//boolean offer true if add else false
-//add
-//remove
+
 public class ArrayQueue implements Queue {
 	private int size;
 	private Object[] array = new Object[5];
