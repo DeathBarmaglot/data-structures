@@ -6,11 +6,6 @@ public class DoubleLinkedList implements List {
     Node tail;
     int size;
 
-//    @Override
-//    public void add(Object value) {
-//    add(value, size);
-//    }
-
     @Override
     public void add(Object value) {
         add(value, size);
@@ -80,7 +75,8 @@ public class DoubleLinkedList implements List {
 
     @Override
     public boolean contains(Object value) {
-        return false;
+        checkNull(value);
+        return indexOf(value) != -1;
     }
 
     @Override

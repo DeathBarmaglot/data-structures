@@ -106,12 +106,7 @@ public class ArrayList implements List{
 
         checkNull(value);
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].equals(value)) {
-                return i;
-            }
-        }
-        return -1;
+        return IntStream.range(0, array.length).filter(i -> array[i].equals(value)).findFirst().orElse(-1);
     }
 
     @Override

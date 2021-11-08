@@ -7,160 +7,124 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedQueueTest {
+    LinkedQueue linkedQueue = new LinkedQueue();
 
+    @DisplayName("test Queue Enqueue And Dequeue Is Empty Return True")
     @Test
-    public void testQueueOverQueueCapacity() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        arrayQueue.enqueue("A");
-        arrayQueue.enqueue("B");
-        arrayQueue.enqueue("C");
-
-        assertEquals(3, arrayQueue.size());
-        assertEquals("C", arrayQueue.dequeue());
-        assertEquals("B", arrayQueue.dequeue());
-        assertEquals("A", arrayQueue.dequeue());
-        assertEquals(0, arrayQueue.size());
-        assertTrue(arrayQueue.isEmpty());
-
+    public void testQueueEnqueueAndDequeue() {
+        linkedQueue.enqueue("A");
+        linkedQueue.enqueue("B");
+        assertEquals(2, linkedQueue.size());
+        assertEquals("A", linkedQueue.dequeue());
+        assertEquals("B", linkedQueue.dequeue());
+        assertEquals(0, linkedQueue.size());
+        assertTrue(linkedQueue.isEmpty());
     }
 
-
-    @Test
-    public void testEnqueueAndDequeueAndCheckSize() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        arrayQueue.enqueue("A");
-        arrayQueue.enqueue("B");
-
-        assertEquals(2, arrayQueue.size());
-        assertEquals("B", arrayQueue.dequeue());
-        assertEquals("A", arrayQueue.dequeue());
-        assertEquals(0, arrayQueue.size());
-        assertTrue(arrayQueue.isEmpty());
-    }
-
+    @DisplayName("test Queue Enqueue And Peek Check Size")
     @Test
     public void testEnqueueAndPeek() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        arrayQueue.enqueue("a");
-        arrayQueue.enqueue("b");
-
-        assertEquals(2, arrayQueue.size());
-        assertEquals("a", arrayQueue.peek());
-        assertEquals(2, arrayQueue.size());
+        linkedQueue.enqueue("a");
+        linkedQueue.enqueue("b");
+        assertEquals(2, linkedQueue.size());
+        assertEquals("a", linkedQueue.peek());
+        assertEquals(2, linkedQueue.size());
     }
 
-    @DisplayName("test Empty new Queue true")
+    @DisplayName("test Empty new Queue Return True")
     @Test
     public void testIsEmptyInNewQueueReturnTrue() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-
-        assertTrue(arrayQueue.isEmpty());
-        assertEquals(0, arrayQueue.size());
+        assertTrue(linkedQueue.isEmpty());
+        assertEquals(0, linkedQueue.size());
     }
 
-    @DisplayName("test Empty After Clear false")
+    @DisplayName("test is Empty After Enqueue Return False")
     @Test
-    public void testIsEmptyInNewQueueReturnFalse() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        arrayQueue.enqueue("C");
-
-        assertFalse(arrayQueue.isEmpty());
+    public void testIsEmptyAfterEnqueueReturnFalse() {
+        linkedQueue.enqueue("C");
+        assertFalse(linkedQueue.isEmpty());
     }
 
-    @DisplayName("test Empty After Clear true")
+    @DisplayName("test Empty After Clear Return True")
     @Test
     public void testIsEmptyAfterClearReturnTrue() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        assertTrue(arrayQueue.isEmpty());
-
-        arrayQueue.enqueue("C");
-        arrayQueue.enqueue("D");
-
-        assertFalse(arrayQueue.isEmpty());
-
-        arrayQueue.clear();
-        assertTrue(arrayQueue.isEmpty());
+        assertTrue(linkedQueue.isEmpty());
+        linkedQueue.enqueue("C");
+        linkedQueue.enqueue("D");
+        assertFalse(linkedQueue.isEmpty());
+        linkedQueue.clear();
+        assertTrue(linkedQueue.isEmpty());
     }
 
-    @DisplayName("test Contains Queue true")
+    @DisplayName("test Contains Return True")
     @Test
     public void testContainsReturnTrue() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        arrayQueue.enqueue("C");
-        arrayQueue.enqueue("D");
-
-        assertTrue(arrayQueue.contains("C"));
-		assertFalse(arrayQueue.contains("A"));
+        linkedQueue.enqueue("C");
+        linkedQueue.enqueue("D");
+        assertTrue(linkedQueue.contains("C"));
+        assertFalse(linkedQueue.contains("A"));
     }
 
-    @DisplayName("test Contains Queue false")
+    @DisplayName("test Contains Queue After Dequeue Return False")
     @Test
     public void testContainsReturnFalse() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-		arrayQueue.enqueue("B");
-        arrayQueue.enqueue("C");
-        arrayQueue.enqueue("D");
-
-        assertFalse(arrayQueue.contains("A"));
-        Object b = arrayQueue.dequeue();
-        assertTrue("B".equals(b));
-		assertTrue(arrayQueue.contains("C"));
-
+        linkedQueue.enqueue("B");
+        linkedQueue.enqueue("C");
+        linkedQueue.enqueue("D");
+        assertFalse(linkedQueue.contains("A"));
+        assertEquals("B", linkedQueue.dequeue());
+        assertTrue(linkedQueue.contains("C"));
     }
 
-
-    @DisplayName("test Contain Queue is Empty")
+    @DisplayName("test Contains Empty Queue Return False")
     @Test
     public void testContainsOnEmptyQueueReturnFalse() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        assertFalse(arrayQueue.contains("A"));
-        assertEquals(0, arrayQueue.size());
+        assertFalse(linkedQueue.contains("A"));
+        assertEquals(0, linkedQueue.size());
+        linkedQueue.clear();
+        assertTrue(linkedQueue.isEmpty());
     }
 
+    @DisplayName("test Multiply Enqueue And Dequeue Return True")
     @Test
     public void testMultiplyEnqueueAndDequeue() {
-        ArrayQueue arrayQueue = new ArrayQueue();
+
         for (int i = 0; i < 5; i++) {
-            arrayQueue.enqueue(i);
+            linkedQueue.enqueue(i);
         }
 
         for (int i = 0; i < 5; i++) {
-            arrayQueue.dequeue();
+            linkedQueue.dequeue();
         }
 
         for (int i = 0; i < 5; i++) {
-            arrayQueue.enqueue(i);
+            linkedQueue.enqueue(i);
         }
 
         for (int i = 0; i < 5; i++) {
-            arrayQueue.dequeue();
+            linkedQueue.dequeue();
         }
+        assertTrue(linkedQueue.isEmpty());
     }
 
+    @DisplayName("test String Output")
     @Test
     public void testStringOutput() {
-        ArrayQueue arrayQueue = new ArrayQueue();
-        arrayQueue.enqueue("A");
-        arrayQueue.enqueue("B");
-        arrayQueue.enqueue("C");
+
+        linkedQueue.enqueue("A");
+        linkedQueue.enqueue("B");
+        linkedQueue.enqueue("C");
 
         String expected = "[A, B, C]";
-        String actual = arrayQueue.toString();
+        String actual = linkedQueue.toString();
 
         assertEquals(expected, actual);
     }
-
+    @DisplayName("test is Empty Throws Illegal State Exception")
     @Test
     public void testDequeueEmptyQueue() {
-		ArrayQueue arrayQueue = new ArrayQueue();
-        assertTrue(arrayQueue.isEmpty());
-        Assertions.assertThrows(IllegalStateException.class, () -> arrayQueue.dequeue());
+
+        assertTrue(linkedQueue.isEmpty());
+        Assertions.assertThrows(IllegalStateException.class, linkedQueue::dequeue);
     }
-
 }
-
-
-
-
-
-
