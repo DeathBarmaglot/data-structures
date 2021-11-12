@@ -2,10 +2,70 @@ package com.luxoft.datastructures.queue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayQueueTest {
 	ArrayQueue arrayQueue = new ArrayQueue();
+	Iterator iterator = arrayQueue.iterator();
+
+	@DisplayName("Test Next Value Return True")
+	@Test
+	public void testNextAndGetTrue() {
+		arrayQueue.enqueue("A");
+		assertEquals(iterator.next(), arrayQueue.peek());
+	}
+
+
+	@DisplayName("Test Counter And Size Return True")
+	@Test
+	public void testCounter() {
+		arrayQueue.enqueue("A");
+		arrayQueue.enqueue("B");
+		arrayQueue.enqueue("C");
+		int count = 0;
+		while (iterator.hasNext()){
+			count++;
+			iterator.next();
+		}
+		assertEquals(count, arrayQueue.size());
+	}
+
+	@DisplayName("Test remove")
+	@Test
+	public void testHasNextRemove() {
+		arrayQueue.enqueue("A");
+		arrayQueue.enqueue("B");
+		iterator.next();
+		iterator.next();
+		arrayQueue.dequeue();
+		assertFalse(iterator.hasNext());
+		assertEquals(1, arrayQueue.size());
+	}
+
+	@DisplayName("Test Has Next Return True")
+	@Test
+	public void testHasNextTrue() {
+		arrayQueue.enqueue("A");
+		assertTrue(iterator.hasNext());
+		assertEquals(1, arrayQueue.size());
+	}
+
+	@DisplayName("Test Has Next Return False")
+	@Test
+	public void testHasNextFalse() {
+		assertFalse(iterator.hasNext());
+		assertTrue(arrayQueue.isEmpty());
+	}
+
+	@DisplayName("Test Push And Next Iterator")
+	@Test
+	public void testPushAndIterator() {
+		arrayQueue.enqueue("A");
+		assertEquals(arrayQueue.peek(), iterator.next());
+	}
+
 
 	@DisplayName("test Queue Enqueue And Dequeue Is Empty Return True")
 	@Test

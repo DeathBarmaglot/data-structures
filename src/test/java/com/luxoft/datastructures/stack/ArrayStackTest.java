@@ -7,12 +7,35 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ArrayStackTest implements Iterator {
+public class ArrayStackTest {
     ArrayStack arrayStack = new ArrayStack();
+    Iterator iterator = arrayStack.iterator();
 
-    @DisplayName("test Push And Pop Is Empty Return True")
-	@Test
-    public void testPushAndPopCheckIsEmptyReturnTrue(){
+    @DisplayName("Test Has Next Return True")
+    @Test
+    public void testHasNextTrue() {
+        arrayStack.push("A");
+        assertTrue(iterator.hasNext());
+        assertEquals(1, arrayStack.size());
+    }
+
+    @DisplayName("Test Has Next Return False")
+    @Test
+    public void testHasNextFalse() {
+        assertFalse(iterator.hasNext());
+        assertTrue(arrayStack.isEmpty());
+    }
+
+    @DisplayName("Test Push And Next Iterator")
+    @Test
+    public void testPushAndIterator() {
+        arrayStack.push("A");
+        assertEquals(arrayStack.peek(), iterator.next());
+    }
+
+    @DisplayName("Test Push And Pop Is Empty Return True")
+    @Test
+    public void testPushAndPopCheckIsEmptyReturnTrue() {
         arrayStack.push("A");
         arrayStack.push("B");
         arrayStack.push("C");
@@ -20,12 +43,13 @@ public class ArrayStackTest implements Iterator {
         assertEquals("C", arrayStack.pop());
         assertEquals("B", arrayStack.pop());
         assertEquals("A", arrayStack.pop());
+        assertEquals(0, arrayStack.size());
         assertTrue(arrayStack.isEmpty());
     }
 
-    @DisplayName("test Push And Peek In Stack Assert Size")
+    @DisplayName("Test Push And Peek In Stack Assert Size")
     @Test
-    public void testPushAndPeek(){
+    public void testPushAndPeek() {
         arrayStack.push("a");
         arrayStack.push("b");
         assertEquals(2, arrayStack.size());
@@ -34,63 +58,54 @@ public class ArrayStackTest implements Iterator {
         assertEquals(2, arrayStack.size());
     }
 
-    @DisplayName("test Is Empty In New Stack Return True")
+    @DisplayName("Test Is Empty In New Stack Return True")
     @Test
-    public void testIsEmptyInNewStackReturnTrue(){
+    public void testIsEmptyInNewStackReturnTrue() {
         assertTrue(arrayStack.isEmpty());
     }
 
-    @DisplayName("test Is Empty After Push Return False")
+    @DisplayName("Test Is Empty After Push Return False")
     @Test
-    public void testIsEmptyInNewStackReturnFalse(){
+    public void testIsEmptyInNewStackReturnFalse() {
         arrayStack.push("C");
         assertFalse(arrayStack.isEmpty());
     }
 
-    @DisplayName("test Empty After Clear Return True")
+    @DisplayName("Test Empty After Clear Return True")
     @Test
-    public void testIsEmptyAfterClearReturnTrue(){
+    public void testIsEmptyAfterClearReturnTrue() {
         arrayStack.push("C");
         arrayStack.push("D");
         arrayStack.clear();
         assertTrue(arrayStack.isEmpty());
     }
 
-    @DisplayName("test Contains Return True")
+    @DisplayName("Test Contains Return True")
     @Test
-    public void testContainsReturnTrue(){
+    public void testContainsReturnTrue() {
         arrayStack.push("C");
         arrayStack.push("D");
         assertTrue(arrayStack.contain("C"));
     }
 
-    @DisplayName("test Contains Return False")
+    @DisplayName("Test Contains Return False")
     @Test
-    public void testContainsReturnFalse(){
+    public void testContainsReturnFalse() {
         arrayStack.push("C");
         arrayStack.push("D");
         assertFalse(arrayStack.contain("A"));
     }
 
-    @DisplayName("test Contains on Empty Stack Return False")
+    @DisplayName("Test Contains on Empty Stack Return False")
     @Test
-    public void testContainsOnEmptyStackReturnFalse(){
+    public void testContainsOnEmptyStackReturnFalse() {
         assertFalse(arrayStack.contain("A"));
     }
 
     @DisplayName("Throw Illegal State Exception On Pop Stack")
     @Test
-    public void testThrowIllegalStateExceptionOnPopStack(){
+    public void testThrowIllegalStateExceptionOnPopStack() {
         Assertions.assertThrows(IllegalStateException.class, arrayStack::pop);
     }
 
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public Object next() {
-        return null;
-    }
 }

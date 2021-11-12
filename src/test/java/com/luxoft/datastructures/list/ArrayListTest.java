@@ -3,12 +3,71 @@ package com.luxoft.datastructures.list;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayListTest {
     ArrayList arrayList = new ArrayList();
+    Iterator iterator = arrayList.iterator();
 
-    @DisplayName("test Add Diff Elements with Index")
+    @DisplayName("Test Next Value Return True")
+    @Test
+    public void testNextAndGetTrue() {
+        arrayList.add("A");
+        assertEquals(iterator.next(), arrayList.get(0));
+    }
+
+    @DisplayName("Test Counter And Size Return True")
+    @Test
+    public void testCounter() {
+        arrayList.add("A");
+        arrayList.add("B");
+        arrayList.add("C");
+        int count = 0;
+        while (iterator.hasNext()){
+            count++;
+            iterator.next();
+        }
+        assertEquals(count, arrayList.size());
+    }
+
+    @DisplayName("Test remove")
+    @Test
+    public void testHasNextRemove() {
+        arrayList.add("A");
+        arrayList.add("B");
+        iterator.next();
+        iterator.next();
+        arrayList.remove(1);
+        assertFalse(iterator.hasNext());
+        assertEquals(1, arrayList.size());
+    }
+
+    @DisplayName("Test Has Next Return True")
+    @Test
+    public void testHasNextTrue() {
+        arrayList.add("A");
+        assertTrue(iterator.hasNext());
+        assertEquals(1, arrayList.size());
+    }
+
+    @DisplayName("Test Has Next Return False")
+    @Test
+    public void testHasNextFalse() {
+        assertFalse(iterator.hasNext());
+        assertTrue(arrayList.isEmpty());
+    }
+
+    @DisplayName("Test Push And Next Iterator")
+    @Test
+    public void testPushAndIterator() {
+        arrayList.add("A");
+        assertEquals(arrayList.get(0), iterator.next());
+    }
+
+
+    @DisplayName("Test Add Diff Elements with Index")
     @Test
     public void testAdd() {
         arrayList.add("A");
@@ -19,7 +78,7 @@ public class ArrayListTest {
         assertEquals(4, arrayList.size());
     }
 
-    @DisplayName("test Add And Remove Elements with Index")
+    @DisplayName("Test Add And Remove Elements with Index")
     @Test
     public void testRemoveDefault() {
         arrayList.add("A");
@@ -32,7 +91,7 @@ public class ArrayListTest {
         assertEquals("C", arrayList.get(1));
     }
 
-    @DisplayName("test Remove Elements with Index")
+    @DisplayName("Test Remove Elements with Index")
     @Test
     public void testRemoveElements() {
         arrayList.add("A");
@@ -43,7 +102,7 @@ public class ArrayListTest {
         assertEquals("A", arrayList.get(0));
     }
 
-    @DisplayName("test Find Last Index")
+    @DisplayName("Test Find Last Index")
     @Test
     public void testFindLastIndex() {
         arrayList.add("A");
@@ -53,7 +112,7 @@ public class ArrayListTest {
         assertEquals(2, arrayList.lastIndexOf("A"));
     }
 
-    @DisplayName("test Find First Index")
+    @DisplayName("Test Find First Index")
     @Test
     public void testFindFirstIndex() {
         arrayList.add("A");
@@ -62,7 +121,7 @@ public class ArrayListTest {
         arrayList.add("C");
         assertEquals(0, arrayList.indexOf("A"));
     }
-    @DisplayName("test ToString Return True")
+    @DisplayName("Test ToString Return True")
     @Test
     public void testToString() {
         arrayList.add("A");
@@ -71,7 +130,7 @@ public class ArrayListTest {
         assertEquals("[A, B, C]", arrayList.toString());
     }
 
-    @DisplayName("test is Empty After Add And Clear Return True")
+    @DisplayName("Test is Empty After Add And Clear Return True")
     @Test
     public void testAddClearEmpty() {
         arrayList.add("A");
@@ -82,7 +141,7 @@ public class ArrayListTest {
         assertEquals(0, arrayList.size());
         assertTrue(arrayList.isEmpty());
     }
-    @DisplayName("test Contains After Add Return True")
+    @DisplayName("Test Contains After Add Return True")
     @Test
     public void testContains() {
         arrayList.add("A");
@@ -90,7 +149,7 @@ public class ArrayListTest {
         arrayList.add("C");
         assertTrue(arrayList.contains("A"));
     }
-    @DisplayName("test Index Bounds Exception Remove")
+    @DisplayName("Test Index Bounds Exception Remove")
     @Test
     public void testIndexBoundsExceptionRemove() {
 
@@ -101,7 +160,7 @@ public class ArrayListTest {
         System.out.println(message.getMessage());
     }
 
-    @DisplayName("test Array Index Bounds Exception Less Then Size")
+    @DisplayName("Test Array Index Bounds Exception Less Then Size")
     @Test
     public void testArrayIndexBoundsExceptionLessThenSize() {
         arrayList.add(1);
@@ -110,7 +169,7 @@ public class ArrayListTest {
         System.out.println(message.getMessage());
     }
 
-    @DisplayName("test Index Bounds Exception More Then Size")
+    @DisplayName("Test Index Bounds Exception More Then Size")
     @Test
     public void testIndexBoundsExceptionMoreThenSize() {
         arrayList.add(1);
@@ -119,7 +178,7 @@ public class ArrayListTest {
         System.out.println(message.getMessage());
     }
 
-    @DisplayName("test Throws Index Out")
+    @DisplayName("Test Throws Index Out")
     @Test
     public void testThrowsIndexOut() {
         arrayList.add(1);

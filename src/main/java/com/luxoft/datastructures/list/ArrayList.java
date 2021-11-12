@@ -1,22 +1,23 @@
 package com.luxoft.datastructures.list;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
-public class ArrayList implements List{
+public class ArrayList implements List, Iterable {
     private int size;
     private Object[] array = new Object[10];
 
     @Override
     public void add(Object value) {
-    add(value, size);
+        add(value, size);
     }
 
 
     @Override
     public void add(Object value, int index) {
-        if (index==size){
+        if (index == size) {
             capacity();
         }
 
@@ -29,20 +30,20 @@ public class ArrayList implements List{
 
 
     private void capacity() {
-        Object[] newArray = new Object[array.length*2];
-        System.arraycopy(array,0,newArray,0,array.length);
+        Object[] newArray = new Object[array.length * 2];
+        System.arraycopy(array, 0, newArray, 0, array.length);
         array = newArray;
     }
 
     private void checkMaxSize(int index) {
-        if(index >= size) {
-            throw new IndexOutOfBoundsException("Index "+ index + " more than size ArrayList");
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " more than size ArrayList");
         }
     }
 
     private void checkNull(Object value) {
-        if(value ==null){
-            throw  new NullPointerException("Null element in value");
+        if (value == null) {
+            throw new NullPointerException("Null element in value");
         }
     }
 
@@ -55,7 +56,7 @@ public class ArrayList implements List{
         Object result = array[index];
 
         IntStream.range(index, size).forEach(i -> array[i] = array[i + 1]);
-        array[size-1] = null;
+        array[size - 1] = null;
         size--;
 
         return result;
@@ -114,7 +115,7 @@ public class ArrayList implements List{
 
         checkNull(value);
 
-        for (int i = size-1; i >= 0; i--){
+        for (int i = size - 1; i >= 0; i--) {
             if (array[i].equals(value)) {
                 return i;
             }
@@ -124,10 +125,31 @@ public class ArrayList implements List{
 
     @Override
     public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(", ","[","]");
+        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
         for (int i = 0; i < size; i++) {
             stringJoiner.add(array[i].toString());
         }
         return stringJoiner.toString();
+    }
+
+    public Iterator iterator() {
+        return new ArrayList.ListIterator();
+    }
+
+    public class ListIterator implements Iterator {
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public Object next() {
+            Object value = array[index];
+            index++;
+            return value;
+
+        }
     }
 }

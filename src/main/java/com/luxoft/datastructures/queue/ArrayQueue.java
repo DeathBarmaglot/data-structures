@@ -1,8 +1,11 @@
 package com.luxoft.datastructures.queue;
 
+import com.luxoft.datastructures.list.ArrayList;
+
+import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class ArrayQueue implements Queue {
+public class ArrayQueue implements Queue, Iterable {
 	private int size;
 	private Object[] array = new Object[5];
 
@@ -64,5 +67,26 @@ public class ArrayQueue implements Queue {
             stringJoiner.add(array[i].toString());
         }
         return stringJoiner.toString();
+    }
+
+    public Iterator iterator() {
+        return new ArrayQueue.QueueIterator();
+    }
+
+    public class QueueIterator implements Iterator {
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public Object next() {
+            Object value = array[index];
+            index++;
+            return value;
+
+        }
     }
 }
