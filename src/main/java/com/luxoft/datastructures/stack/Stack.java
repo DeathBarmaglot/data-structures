@@ -1,6 +1,6 @@
 package com.luxoft.datastructures.stack;
 
-public interface Stack {
+public interface Stack extends Iterable<Object> {
 
     void push(Object value);
     Object pop();

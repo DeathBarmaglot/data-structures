@@ -2,7 +2,7 @@ package com.luxoft.datastructures.stack;
 
 import java.util.Iterator;
 
-public class ArrayStack implements Stack, Iterable {
+public class ArrayStack implements Stack {
     private int size;
     private Object[] array;
 
@@ -25,9 +25,7 @@ public class ArrayStack implements Stack, Iterable {
     private void ensureCapacity() {
         if (array.length == size) {
             Object[] newArray = new Object[array.length * 2];
-            for (int i = 0; i < size; i++) {
-                newArray[i] = array[i];
-            }
+            System.arraycopy(array, 0, newArray, 0, size);
             array = newArray;
         }
     }
@@ -73,11 +71,11 @@ public class ArrayStack implements Stack, Iterable {
     }
 
 
-    public Iterator iterator() {
+    public Iterator<Object> iterator() {
         return new StackIterator();
     }
 
-    public class StackIterator implements Iterator {
+    public class StackIterator implements Iterator<Object> {
         private int index = 0;
 
         @Override
@@ -94,5 +92,3 @@ public class ArrayStack implements Stack, Iterable {
         }
     }
 }
-
-

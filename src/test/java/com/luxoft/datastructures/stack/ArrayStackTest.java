@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayStackTest {
     ArrayStack arrayStack = new ArrayStack();
-    Iterator iterator = arrayStack.iterator();
+    Iterator<Object> iterator = arrayStack.iterator();
 
     @DisplayName("Test Has Next Return True")
     @Test
@@ -61,6 +61,7 @@ public class ArrayStackTest {
     @DisplayName("Test Is Empty In New Stack Return True")
     @Test
     public void testIsEmptyInNewStackReturnTrue() {
+        ArrayStack arrayStack = new ArrayStack(0);
         assertTrue(arrayStack.isEmpty());
     }
 
