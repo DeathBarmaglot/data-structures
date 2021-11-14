@@ -60,7 +60,7 @@ public class LinkedList implements List {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<Object> iterator() {
         return null;
     }
 }

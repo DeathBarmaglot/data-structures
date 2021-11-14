@@ -2,9 +2,7 @@ package com.luxoft.datastructures.list;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.Iterator;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayListTest {
@@ -68,6 +66,13 @@ public class ArrayListTest {
         assertEquals(arrayList.get(0), iterator.next());
     }
 
+
+    @DisplayName("Test Set Method")
+    @Test
+    public void testSet() {
+        arrayList.add("A");
+        assertEquals(arrayList.get(0), arrayList.set("B", 0));
+    }
 
     @DisplayName("Test Add Difference Elements with Index")
     @Test

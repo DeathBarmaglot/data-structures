@@ -109,5 +109,4 @@ public class ArrayStackTest {
     public void testThrowIllegalStateExceptionOnPopStack() {
         Assertions.assertThrows(IllegalStateException.class, arrayStack::pop);
     }
-
 }
