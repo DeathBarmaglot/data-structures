@@ -1,5 +1,7 @@
 package com.luxoft.datastructures.list;
 
+import java.util.Iterator;
+
 public class LinkedList implements List {
 
     @Override
@@ -55,5 +57,10 @@ public class LinkedList implements List {
     @Override
     public int lastIndexOf(Object value) {
         return 0;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return null;
     }
 }

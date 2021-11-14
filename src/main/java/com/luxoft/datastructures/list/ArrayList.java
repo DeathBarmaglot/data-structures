@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
-public class ArrayList implements List, Iterable {
+public class ArrayList implements List {
     private int size;
     private Object[] array = new Object[10];
 
@@ -17,12 +17,15 @@ public class ArrayList implements List, Iterable {
 
     @Override
     public void add(Object value, int index) {
+
         if (index == size) {
             capacity();
         }
 
         checkNull(value);
-        if (size - index >= 0) System.arraycopy(array, index, array, index + 1, size - index);
+        if (size - index >= 0) {
+            System.arraycopy(array, index, array, index + 1, size - index);
+        }
 
         size++;
         array[index] = value;
@@ -99,6 +102,7 @@ public class ArrayList implements List, Iterable {
     @Override
     public boolean contains(Object value) {
         checkNull(value);
+
         return indexOf(value) != -1;
     }
 
@@ -106,8 +110,16 @@ public class ArrayList implements List, Iterable {
     public int indexOf(Object value) {
 
         checkNull(value);
+        int bound = array.length;
+        for (int i = 0; i < bound; i++) {
+            if (array[i] != null) {
+                if (array[i].equals(value)) {
+                    return i;
+                }
+            }
+        }
 
-        return IntStream.range(0, array.length).filter(i -> array[i].equals(value)).findFirst().orElse(-1);
+        return -1;
     }
 
     @Override
@@ -116,8 +128,10 @@ public class ArrayList implements List, Iterable {
         checkNull(value);
 
         for (int i = size - 1; i >= 0; i--) {
-            if (array[i].equals(value)) {
-                return i;
+            if (array[i] != null) {
+                if (array[i].equals(value)) {
+                    return i;
+                }
             }
         }
         return -1;
@@ -132,11 +146,11 @@ public class ArrayList implements List, Iterable {
         return stringJoiner.toString();
     }
 
-    public Iterator iterator() {
+    public Iterator<Object> iterator() {
         return new ArrayList.ListIterator();
     }
 
-    public class ListIterator implements Iterator {
+    public class ListIterator implements Iterator<Object> {
         private int index = 0;
 
         @Override

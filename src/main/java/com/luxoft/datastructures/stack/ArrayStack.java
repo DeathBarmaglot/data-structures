@@ -24,7 +24,7 @@ public class ArrayStack implements Stack {
 
     private void ensureCapacity() {
         if (array.length == size) {
-            Object[] newArray = new Object[array.length * 2];
+            Object[] newArray = new Object[(int)(array.length * 1.5)];
             System.arraycopy(array, 0, newArray, 0, size);
             array = newArray;
         }

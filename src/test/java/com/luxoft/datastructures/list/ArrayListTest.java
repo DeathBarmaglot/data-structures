@@ -9,13 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayListTest {
     ArrayList arrayList = new ArrayList();
-    Iterator iterator = arrayList.iterator();
+    Iterator<Object> iterator = arrayList.iterator();
 
-    @DisplayName("Test Next Value Return True")
+    @DisplayName("Test Iterator Next Value Return True")
     @Test
     public void testNextAndGetTrue() {
         arrayList.add("A");
+        assertTrue(iterator.hasNext());
         assertEquals(iterator.next(), arrayList.get(0));
+        assertFalse(iterator.hasNext());
     }
 
     @DisplayName("Test Counter And Size Return True")
@@ -25,14 +27,14 @@ public class ArrayListTest {
         arrayList.add("B");
         arrayList.add("C");
         int count = 0;
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             count++;
             iterator.next();
         }
         assertEquals(count, arrayList.size());
     }
 
-    @DisplayName("Test remove")
+    @DisplayName("Test remove Check HasNext")
     @Test
     public void testHasNextRemove() {
         arrayList.add("A");
@@ -67,14 +69,14 @@ public class ArrayListTest {
     }
 
 
-    @DisplayName("Test Add Diff Elements with Index")
+    @DisplayName("Test Add Difference Elements with Index")
     @Test
     public void testAdd() {
         arrayList.add("A");
         arrayList.add("B");
         assertEquals(2, arrayList.size());
-        arrayList.add("A", 2);
-        arrayList.add("B", 6);
+        arrayList.add(new int[]{0, 1, 2, 3}, 2);
+        arrayList.add("D", 6);
         assertEquals(4, arrayList.size());
     }
 
@@ -97,7 +99,7 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B", 1);
         assertEquals(2, arrayList.size());
-        arrayList.remove(1);
+        assertEquals("B", arrayList.remove(1));
         assertEquals(1, arrayList.size());
         assertEquals("A", arrayList.get(0));
     }
@@ -121,6 +123,15 @@ public class ArrayListTest {
         arrayList.add("C");
         assertEquals(0, arrayList.indexOf("A"));
     }
+
+    @DisplayName("Test Find Negative Index")
+    @Test
+    public void testFindNegativeIndex() {
+        arrayList.add("A");
+        assertEquals(-1, arrayList.indexOf("B"));
+        assertEquals(-1, arrayList.lastIndexOf("C"));
+    }
+
     @DisplayName("Test ToString Return True")
     @Test
     public void testToString() {
@@ -141,6 +152,7 @@ public class ArrayListTest {
         assertEquals(0, arrayList.size());
         assertTrue(arrayList.isEmpty());
     }
+
     @DisplayName("Test Contains After Add Return True")
     @Test
     public void testContains() {
@@ -149,6 +161,7 @@ public class ArrayListTest {
         arrayList.add("C");
         assertTrue(arrayList.contains("A"));
     }
+
     @DisplayName("Test Index Bounds Exception Remove")
     @Test
     public void testIndexBoundsExceptionRemove() {
@@ -157,7 +170,7 @@ public class ArrayListTest {
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> arrayList.remove(1));
 
-        System.out.println(message.getMessage());
+        assertEquals("Index 1 more than size ArrayList", message.getMessage());
     }
 
     @DisplayName("Test Array Index Bounds Exception Less Then Size")
@@ -165,8 +178,8 @@ public class ArrayListTest {
     public void testArrayIndexBoundsExceptionLessThenSize() {
         arrayList.add(1);
         IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> arrayList.add(1, -1));
-        System.out.println(message.getMessage());
+                assertThrows(IndexOutOfBoundsException.class, () -> arrayList.set(1, -1));
+        assertEquals("Index -1 out of bounds for length 20", message.getMessage());
     }
 
     @DisplayName("Test Index Bounds Exception More Then Size")
@@ -175,16 +188,22 @@ public class ArrayListTest {
         arrayList.add(1);
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(2));
-        System.out.println(message.getMessage());
+        assertEquals("Index 2 more than size ArrayList", message.getMessage());
     }
 
-    @DisplayName("Test Throws Index Out")
+    @DisplayName("Test Index Bounds Exception Remove is Empty")
     @Test
-    public void testThrowsIndexOut() {
-        arrayList.add(1);
-        assertEquals(1, arrayList.size());
+    public void testIndexBoundsExceptionIsEmpty() {
         IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> arrayList.get(2));
-        System.out.println(message.getMessage());
+                assertThrows(IndexOutOfBoundsException.class, () -> arrayList.remove(3));
+        assertEquals("Index 3 more than size ArrayList", message.getMessage());
+    }
+
+    @DisplayName("Test Null element in value")
+    @Test
+    public void testNullElementInValue() {
+        NullPointerException message =
+                assertThrows(NullPointerException.class, () -> arrayList.add(null));
+        assertEquals("Null element in value", message.getMessage());
     }
 }

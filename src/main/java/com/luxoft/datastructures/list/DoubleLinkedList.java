@@ -1,5 +1,7 @@
 package com.luxoft.datastructures.list;
 
+import java.util.Iterator;
+
 public class DoubleLinkedList implements List {
 
     Node head;
@@ -87,5 +89,10 @@ public class DoubleLinkedList implements List {
     @Override
     public int lastIndexOf(Object value) {
         return 0;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return null;
     }
 }
