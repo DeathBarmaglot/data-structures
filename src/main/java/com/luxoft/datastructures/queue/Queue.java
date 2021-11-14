@@ -1,19 +1,19 @@
 package com.luxoft.datastructures.queue;
 
-public interface Queue {
-	void enqueue (Object value);
+public interface Queue extends Iterable<Object> {
+    void enqueue(Object value);
 
-	Object dequeue();
+    Object dequeue();
 
-	Object peek();
+    Object peek();
 
-	int size();
+    int size();
 
-	boolean isEmpty();
+    boolean isEmpty();
 
-	boolean contains(Object value);
+    boolean contains(Object value);
 
-	void clear();
+    void clear();
 
-	String toString();
+    String toString();
 }

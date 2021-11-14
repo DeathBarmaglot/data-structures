@@ -34,14 +34,14 @@ public class DoubleLinkedList implements List {
     }
 
     private void checkNull(Object value) {
-        if(value == null){
-            throw  new NullPointerException("Null element in value");
+        if (value == null) {
+            throw new NullPointerException("Null element in value");
         }
     }
 
     private void checkMaxSize(int index) {
-        if(index >= size) {
-            throw new IndexOutOfBoundsException("Index "+ index + " more than size ArrayList");
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " more than size ArrayList");
         }
     }
 

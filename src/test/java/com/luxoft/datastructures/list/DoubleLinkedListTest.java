@@ -1,4 +1,5 @@
 package com.luxoft.datastructures.list;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,10 +14,9 @@ public class DoubleLinkedListTest {
         Node head = new Node(1);
         Node second = new Node(2);
         head.next = second;
-        Node third = new Node(3);
-        second.next = third;
+        second.next = new Node(3);
 
-}
+    }
 
     @Test
     public void testRemoveDefault() {

@@ -120,6 +120,7 @@ public class LinkedQueueTest {
 
         assertEquals(expected, actual);
     }
+
     @DisplayName("test is Empty Throws Illegal State Exception")
     @Test
     public void testDequeueEmptyQueue() {

@@ -1,5 +1,6 @@
 package com.luxoft.datastructures.queue;
 
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -37,8 +38,7 @@ public class LinkedQueue implements Queue {
 
     @Override
     public Object peek() {
-        Object result = head.value;
-        return result;
+        return head.value;
     }
 
     @Override
@@ -79,5 +79,27 @@ public class LinkedQueue implements Queue {
         }
 
         return stringJoiner.toString();
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new QueueIterator();
+    }
+
+    public class QueueIterator implements Iterator<Object> {
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public Object next() {
+            Object value = head;
+            index++;
+            return value;
+
+        }
     }
 }
