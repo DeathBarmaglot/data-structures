@@ -1,9 +1,9 @@
 package com.luxoft.datastructures.list;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class DoubleLinkedListTest {
     DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
@@ -15,7 +15,6 @@ public class DoubleLinkedListTest {
         Node second = new Node(2);
         head.next = second;
         second.next = new Node(3);
-
     }
 
     @Test
@@ -25,18 +24,16 @@ public class DoubleLinkedListTest {
     }
 
     @Test
-    public void testRemoveNull() {
-        assertNull(doubleLinkedList.remove(0));
-    }
-
-    @Test
     public void testRemoveANull() {
-        doubleLinkedList.add("A");
+        DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
+        doubleLinkedList.add("F");
         doubleLinkedList.add("B");
         doubleLinkedList.add("C");
-        assertEquals("B", doubleLinkedList.remove(1));
+        doubleLinkedList.add("D", 3);
+        doubleLinkedList.add("A", 4);
+        doubleLinkedList.add("B", 5);
+        assertEquals("F", doubleLinkedList.remove(0));
     }
-
 
 
     @Test
@@ -107,84 +104,43 @@ public class DoubleLinkedListTest {
         assertTrue(doubleLinkedList.contains("A"));
     }
 
-    @Test
-    public void testIndexBoundsExceptionRemove() {
 
-        doubleLinkedList.add(1);
-        IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.remove(1));
-
-        System.out.println(message.getMessage());
-    }
-
-    @Test
-    public void testArrayIndexBoundsExceptionLessThenSize() {
-
-        doubleLinkedList.add(1);
-        IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.add(1, -1));
-
-        System.out.println(message.getMessage());
-    }
-
-    @Test
-    public void testIndexBoundsExceptionMoreThenSize() {
-
-        doubleLinkedList.add(1);
-        IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.get(2));
-
-        System.out.println(message.getMessage());
-    }
-
-    @Test
-    public void testThrowsIndexOut() {
-
-        doubleLinkedList.add(1);
-        assertEquals(1, doubleLinkedList.size());
-        IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.get(2));
-
-        System.out.println(message.getMessage());
-    }
-
-    @DisplayName("test DoubleLinkedList add And remove Is Empty Return True")
+    @DisplayName("Test DoubleLinkedList add And remove Is Empty Return True")
     @Test
     public void testDoubleLinkedListAddAndRemove() {
         doubleLinkedList.add("A");
         doubleLinkedList.add("B");
         assertEquals(2, doubleLinkedList.size());
-        assertEquals("A", doubleLinkedList.remove(0));
         assertEquals("B", doubleLinkedList.remove(1));
-        assertEquals(0, doubleLinkedList.size());
+        assertEquals("A", doubleLinkedList.remove(0));
         assertTrue(doubleLinkedList.isEmpty());
     }
 
-    @DisplayName("test DoubleLinkedList add And get Check Size")
+    @DisplayName("Test DoubleLinkedList add And get Check Size")
     @Test
     public void testAddAndGet() {
         doubleLinkedList.add("A");
         doubleLinkedList.add("B");
         assertEquals(2, doubleLinkedList.size());
         assertEquals("A", doubleLinkedList.get(0));
-        assertEquals(2, doubleLinkedList.size());
+
     }
 
-    @DisplayName("test Empty new DoubleLinkedList Return True")
+    @DisplayName("Test Empty new Double LinkedList Return True")
     @Test
     public void testIsEmptyInNewDoubleLinkedListReturnTrue() {
         assertTrue(doubleLinkedList.isEmpty());
         assertEquals(0, doubleLinkedList.size());
     }
 
-    @DisplayName("test is Empty After add Return False")
+    @DisplayName("Test is Empty After add Return False")
     @Test
     public void testIsEmptyAfterAddReturnFalse() {
         doubleLinkedList.add("C");
         assertFalse(doubleLinkedList.isEmpty());
     }
 
-    @DisplayName("test Empty After Clear Return True")
+    @DisplayName("Test Empty After Clear Return True")
     @Test
     public void testIsEmptyAfterClearReturnTrue() {
         assertTrue(doubleLinkedList.isEmpty());
@@ -195,7 +151,7 @@ public class DoubleLinkedListTest {
         assertTrue(doubleLinkedList.isEmpty());
     }
 
-    @DisplayName("test Contains Return True")
+    @DisplayName("Test Contains Return True")
     @Test
     public void testContainsReturnTrue() {
         doubleLinkedList.add("C");
@@ -204,7 +160,7 @@ public class DoubleLinkedListTest {
         assertFalse(doubleLinkedList.contains("A"));
     }
 
-    @DisplayName("test Contains DoubleLinkedList After remove Return False")
+    @DisplayName("Test Contains DoubleLinkedList After remove Return False")
     @Test
     public void testContainsReturnFalse() {
         doubleLinkedList.add("B");
@@ -215,7 +171,7 @@ public class DoubleLinkedListTest {
         assertTrue(doubleLinkedList.contains("C"));
     }
 
-    @DisplayName("test Contains Empty DoubleLinkedList Return False")
+    @DisplayName("Test Contains Empty DoubleLinkedList Return False")
     @Test
     public void testContainsOnEmptyDoubleLinkedListReturnFalse() {
         assertFalse(doubleLinkedList.contains("A"));
@@ -224,7 +180,7 @@ public class DoubleLinkedListTest {
         assertTrue(doubleLinkedList.isEmpty());
     }
 
-    @DisplayName("test Multiply add And remove Return True")
+    @DisplayName("Test Multiply add And remove Return True")
     @Test
     public void testMultiplyAddAndRemove() {
 
@@ -232,22 +188,24 @@ public class DoubleLinkedListTest {
             doubleLinkedList.add(i);
         }
 
-        for (int i = 0; i < 5; i++) {
-            doubleLinkedList.remove(i);
+        while (doubleLinkedList.size > 0) {
+            doubleLinkedList.remove(0);
         }
+
         assertTrue(doubleLinkedList.isEmpty());
 
         for (int i = 0; i < 5; i++) {
             doubleLinkedList.add(i);
         }
 
-        for (int i = 0; i < 5; i++) {
-            doubleLinkedList.remove(i);
+        while (doubleLinkedList.size > 0) {
+            doubleLinkedList.remove(0);
         }
+
         assertTrue(doubleLinkedList.isEmpty());
     }
 
-    @DisplayName("test String Output")
+    @DisplayName("Test toString Output")
     @Test
     public void testStringOutput() {
 
@@ -261,4 +219,48 @@ public class DoubleLinkedListTest {
         assertEquals(expected, actual);
     }
 
+    @DisplayName("Test Index Bounds Exception Remove")
+    @Test
+    public void testIndexBoundsExceptionRemove() {
+
+        doubleLinkedList.add(1);
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.remove(1));
+
+        assertEquals("Index 1 more than size ArrayList", message.getMessage());
+    }
+
+    @DisplayName("Test Array Index Bounds Exception Less Then Size")
+    @Test
+    public void testArrayIndexBoundsExceptionLessThenSize() {
+        doubleLinkedList.add(1);
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.set(1, -1));
+        assertEquals("Index -1 more than size ArrayList", message.getMessage());
+    }
+
+    @DisplayName("Test Index Bounds Exception More Then Size")
+    @Test
+    public void testIndexBoundsExceptionMoreThenSize() {
+        doubleLinkedList.add(1);
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.get(2));
+        assertEquals("Index 2 more than size ArrayList", message.getMessage());
+    }
+
+    @DisplayName("Test Index Bounds Exception Remove is Empty")
+    @Test
+    public void testIndexBoundsExceptionIsEmpty() {
+        IndexOutOfBoundsException message =
+                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.remove(3));
+        assertEquals("Index 3 more than size ArrayList", message.getMessage());
+    }
+
+    @DisplayName("Test Null element in value")
+    @Test
+    public void testNullElementInValue() {
+        NullPointerException message =
+                assertThrows(NullPointerException.class, () -> doubleLinkedList.add(null));
+        assertEquals("Null element in value", message.getMessage());
+    }
 }
