@@ -3,24 +3,24 @@ package com.luxoft.datastructures.list;
 import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class DoubleLinkedList implements List {
+public class DoubleLinkedList<T> implements List<T> {
 
-    Node head;
-    Node tail;
+    Node<T> head;
+    Node<T> tail;
     int size;
 
     @Override
-    public void add(Object value) {
+    public void add(T value) {
         add(value, size);
     }
 
     @Override
-    public void add(Object value, int index) {
+    public void add(T value, int index) {
         checkNull(value);
 
         if (index >= 0) {
 
-            Node newNode = new Node(value);
+            Node<T> newNode = new Node<>(value);
             if (size == 0) {
                 head = tail = newNode;
             } else if (index == size) {
@@ -36,16 +36,17 @@ public class DoubleLinkedList implements List {
                 newNode.next = getNode(index);
                 newNode.prev = newNode.next.prev;
                 newNode.next.prev = newNode;
+                newNode.prev = newNode.next;
             }
             size++;
         }
     }
 
     @Override
-    public Object remove(int index) {
+    public T remove(int index) {
 
         checkRangeSize(index);
-        Node current = head;
+        Node<T> current = head;
         size--;
         if (index == 0) {
             head = current.next;
@@ -61,27 +62,28 @@ public class DoubleLinkedList implements List {
             current.prev.next = current.next;
             current.next.prev = current.prev;
         }
+        assert current != null;
         return current.value;
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         checkRangeSize(index);
         return getNode(index).value;
     }
 
     @Override
-    public Object set(Object value, int index) {
+    public T set(T value, int index) {
         checkNull(value);
         checkRangeSize(index);
-        Node result = getNode(index);
-        Object oldValue = result.value;
+        Node<T> result = getNode(index);
+        T oldValue = result.value;
         result.value = value;
         return oldValue;
     }
 
-    private Node getNode(int index) {
-        Node result;
+    private Node<T> getNode(int index) {
+        Node<T> result;
         if (index <= size / 2) {
             result = head;
             for (int i = 0; i < index; i++) {
@@ -113,15 +115,15 @@ public class DoubleLinkedList implements List {
     }
 
     @Override
-    public boolean contains(Object value) {
+    public boolean contains(T value) {
         checkNull(value);
         return indexOf(value) != -1;
     }
 
     @Override
-    public int indexOf(Object value) {
+    public int indexOf(T value) {
         checkNull(value);
-        Node current = head;
+        Node<T> current = head;
         for (int index = 0; index < size - 1; index++) {
             if (value.equals(current.value)) {
                 return index;
@@ -132,9 +134,9 @@ public class DoubleLinkedList implements List {
     }
 
     @Override
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(T value) {
         checkNull(value);
-        Node current = tail;
+        Node<T> current = tail;
         for (int index = size - 1; index >= 0; index--) {
             if (value.equals(current.value)) {
                 return index;
@@ -147,7 +149,7 @@ public class DoubleLinkedList implements List {
     @Override
     public String toString() {
         StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
-        Node current = head;
+        Node<T> current = head;
         for (int i = 0; i < size; i++) {
 
             stringJoiner.add(current.value.toString());
@@ -159,12 +161,12 @@ public class DoubleLinkedList implements List {
 
 
     @Override
-    public Iterator<Object> iterator() {
+    public Iterator<T> iterator() {
         return new DoubleLinkedListIterator();
     }
 
-    private class DoubleLinkedListIterator implements Iterator<Object> {
-        private Node current = head;
+    private class DoubleLinkedListIterator implements Iterator<T> {
+        private Node<T> current = head;
 
         @Override
         public boolean hasNext() {
@@ -172,8 +174,8 @@ public class DoubleLinkedList implements List {
         }
 
         @Override
-        public Object next() {
-            Object value = current.value;
+        public T next() {
+            T value = current.value;
             current = current.next;
             return value;
         }
@@ -185,7 +187,7 @@ public class DoubleLinkedList implements List {
     }
 
 
-    private void checkNull(Object value) {
+    private void checkNull(T value) {
         if (value == null) {
             throw new NullPointerException("Null element in value");
         }

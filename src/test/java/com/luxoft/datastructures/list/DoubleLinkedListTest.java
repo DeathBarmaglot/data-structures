@@ -5,33 +5,33 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DoubleLinkedListTest {
-    DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
+public class DoubleLinkedListTest<T> {
+    DoubleLinkedList<T> doubleLinkedList = new DoubleLinkedList<>();
 
     @Test
     public void testAdd() {
 
-        Node head = new Node(1);
-        Node second = new Node(2);
+        Node<T> head = new Node(1);
+        Node<T> second = new Node(2);
         head.next = second;
         second.next = new Node(3);
     }
 
     @Test
     public void testRemoveA() {
-        doubleLinkedList.add("A");
+        doubleLinkedList.add((T) "A");
         assertEquals("A", doubleLinkedList.remove(0));
     }
 
     @Test
     public void testRemoveANull() {
-        DoubleLinkedList doubleLinkedList = new DoubleLinkedList();
-        doubleLinkedList.add("F");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
-        doubleLinkedList.add("D", 3);
-        doubleLinkedList.add("A", 4);
-        doubleLinkedList.add("B", 5);
+
+        doubleLinkedList.add((T)"F");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
+        doubleLinkedList.add((T)"D", 3);
+        doubleLinkedList.add((T)"A", 4);
+        doubleLinkedList.add((T)"B", 5);
         assertEquals("F", doubleLinkedList.remove(0));
     }
 
@@ -39,9 +39,9 @@ public class DoubleLinkedListTest {
     @Test
     public void testRemoveDefault() {
 
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
         assertEquals(3, doubleLinkedList.size());
         doubleLinkedList.remove(0);
         assertEquals(2, doubleLinkedList.size());
@@ -51,8 +51,8 @@ public class DoubleLinkedListTest {
 
     @Test
     public void testRemoveElements() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B", 1);
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T) "B", 1);
         assertEquals(2, doubleLinkedList.size());
         doubleLinkedList.remove(1);
         assertEquals(1, doubleLinkedList.size());
@@ -61,35 +61,35 @@ public class DoubleLinkedListTest {
 
     @Test
     public void testFindLastIndex() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("C");
-        assertEquals(2, doubleLinkedList.lastIndexOf("A"));
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"C");
+        assertEquals(2, doubleLinkedList.lastIndexOf((T)"A"));
     }
 
     @Test
     public void testFindFirstIndex() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("C");
-        assertEquals(0, doubleLinkedList.indexOf("A"));
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"C");
+        assertEquals(0, doubleLinkedList.indexOf((T)"A"));
     }
 
     @Test
     public void testToString() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
         assertEquals("[A, B, C]", doubleLinkedList.toString());
     }
 
     @Test
     public void testAddClearEmpty() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
         assertEquals(3, doubleLinkedList.size());
         doubleLinkedList.clear();
         assertEquals(0, doubleLinkedList.size());
@@ -98,18 +98,18 @@ public class DoubleLinkedListTest {
 
     @Test
     public void testContain() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
-        assertTrue(doubleLinkedList.contains("A"));
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
+        assertTrue(doubleLinkedList.contains((T)"A"));
     }
 
 
     @DisplayName("Test DoubleLinkedList add And remove Is Empty Return True")
     @Test
     public void testDoubleLinkedListAddAndRemove() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
         assertEquals(2, doubleLinkedList.size());
         assertEquals("B", doubleLinkedList.remove(1));
         assertEquals("A", doubleLinkedList.remove(0));
@@ -119,8 +119,8 @@ public class DoubleLinkedListTest {
     @DisplayName("Test DoubleLinkedList add And get Check Size")
     @Test
     public void testAddAndGet() {
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
         assertEquals(2, doubleLinkedList.size());
         assertEquals("A", doubleLinkedList.get(0));
 
@@ -136,7 +136,7 @@ public class DoubleLinkedListTest {
     @DisplayName("Test is Empty After add Return False")
     @Test
     public void testIsEmptyAfterAddReturnFalse() {
-        doubleLinkedList.add("C");
+        doubleLinkedList.add((T)"C");
         assertFalse(doubleLinkedList.isEmpty());
     }
 
@@ -144,8 +144,8 @@ public class DoubleLinkedListTest {
     @Test
     public void testIsEmptyAfterClearReturnTrue() {
         assertTrue(doubleLinkedList.isEmpty());
-        doubleLinkedList.add("C");
-        doubleLinkedList.add("D");
+        doubleLinkedList.add((T)"C");
+        doubleLinkedList.add((T)"D");
         assertFalse(doubleLinkedList.isEmpty());
         doubleLinkedList.clear();
         assertTrue(doubleLinkedList.isEmpty());
@@ -154,27 +154,27 @@ public class DoubleLinkedListTest {
     @DisplayName("Test Contains Return True")
     @Test
     public void testContainsReturnTrue() {
-        doubleLinkedList.add("C");
-        doubleLinkedList.add("D");
-        assertTrue(doubleLinkedList.contains("C"));
-        assertFalse(doubleLinkedList.contains("A"));
+        doubleLinkedList.add((T)"C");
+        doubleLinkedList.add((T)"D");
+        assertTrue(doubleLinkedList.contains((T)"C"));
+        assertFalse(doubleLinkedList.contains((T)"A"));
     }
 
     @DisplayName("Test Contains DoubleLinkedList After remove Return False")
     @Test
     public void testContainsReturnFalse() {
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
-        doubleLinkedList.add("D");
-        assertFalse(doubleLinkedList.contains("A"));
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
+        doubleLinkedList.add((T)"D");
+        assertFalse(doubleLinkedList.contains((T)"A"));
         assertEquals("B", doubleLinkedList.remove(0));
-        assertTrue(doubleLinkedList.contains("C"));
+        assertTrue(doubleLinkedList.contains((T)"C"));
     }
 
     @DisplayName("Test Contains Empty DoubleLinkedList Return False")
     @Test
     public void testContainsOnEmptyDoubleLinkedListReturnFalse() {
-        assertFalse(doubleLinkedList.contains("A"));
+        assertFalse(doubleLinkedList.contains((T)"A"));
         assertEquals(0, doubleLinkedList.size());
         doubleLinkedList.clear();
         assertTrue(doubleLinkedList.isEmpty());
@@ -185,7 +185,7 @@ public class DoubleLinkedListTest {
     public void testMultiplyAddAndRemove() {
 
         for (int i = 0; i < 5; i++) {
-            doubleLinkedList.add(i);
+            doubleLinkedList.add( (T) (""+ i));
         }
 
         while (doubleLinkedList.size > 0) {
@@ -195,7 +195,7 @@ public class DoubleLinkedListTest {
         assertTrue(doubleLinkedList.isEmpty());
 
         for (int i = 0; i < 5; i++) {
-            doubleLinkedList.add(i);
+            doubleLinkedList.add((T) (""+ i));
         }
 
         while (doubleLinkedList.size > 0) {
@@ -209,9 +209,9 @@ public class DoubleLinkedListTest {
     @Test
     public void testStringOutput() {
 
-        doubleLinkedList.add("A");
-        doubleLinkedList.add("B");
-        doubleLinkedList.add("C");
+        doubleLinkedList.add((T)"A");
+        doubleLinkedList.add((T)"B");
+        doubleLinkedList.add((T)"C");
 
         String expected = "[A, B, C]";
         String actual = doubleLinkedList.toString();
@@ -223,7 +223,7 @@ public class DoubleLinkedListTest {
     @Test
     public void testIndexBoundsExceptionRemove() {
 
-        doubleLinkedList.add(1);
+        doubleLinkedList.add((T) "A");
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.remove(1));
 
@@ -233,16 +233,16 @@ public class DoubleLinkedListTest {
     @DisplayName("Test Array Index Bounds Exception Less Then Size")
     @Test
     public void testArrayIndexBoundsExceptionLessThenSize() {
-        doubleLinkedList.add(1);
+        doubleLinkedList.add((T) "A");
         IndexOutOfBoundsException message =
-                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.set(1, -1));
+                assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.set((T) "A", -1));
         assertEquals("Index -1 more than size ArrayList", message.getMessage());
     }
 
     @DisplayName("Test Index Bounds Exception More Then Size")
     @Test
     public void testIndexBoundsExceptionMoreThenSize() {
-        doubleLinkedList.add(1);
+        doubleLinkedList.add((T) "A");
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.get(2));
         assertEquals("Index 2 more than size ArrayList", message.getMessage());
