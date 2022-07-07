@@ -227,7 +227,7 @@ public class DoubleLinkedListTest<T> {
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.remove(1));
 
-        assertEquals("Index 1 more than size ArrayList", message.getMessage());
+        assertEquals("Index 1 more than size", message.getMessage());
     }
 
     @DisplayName("Test Array Index Bounds Exception Less Then Size")
@@ -236,7 +236,7 @@ public class DoubleLinkedListTest<T> {
         doubleLinkedList.add((T) "A");
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.set((T) "A", -1));
-        assertEquals("Index -1 more than size ArrayList", message.getMessage());
+        assertEquals("Index -1 more than size", message.getMessage());
     }
 
     @DisplayName("Test Index Bounds Exception More Then Size")
@@ -245,7 +245,7 @@ public class DoubleLinkedListTest<T> {
         doubleLinkedList.add((T) "A");
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.get(2));
-        assertEquals("Index 2 more than size ArrayList", message.getMessage());
+        assertEquals("Index 2 more than size", message.getMessage());
     }
 
     @DisplayName("Test Index Bounds Exception Remove is Empty")
@@ -253,7 +253,7 @@ public class DoubleLinkedListTest<T> {
     public void testIndexBoundsExceptionIsEmpty() {
         IndexOutOfBoundsException message =
                 assertThrows(IndexOutOfBoundsException.class, () -> doubleLinkedList.remove(3));
-        assertEquals("Index 3 more than size ArrayList", message.getMessage());
+        assertEquals("Index 3 more than size", message.getMessage());
     }
 
     @DisplayName("Test Null element in value")

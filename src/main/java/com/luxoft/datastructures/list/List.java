@@ -1,6 +1,8 @@
 package com.luxoft.datastructures.list;
 
-public interface List<T> extends Iterable<T> {
+import java.util.Iterator;
+
+public interface List<T> {
 
     void add(T value);
 
@@ -25,4 +27,6 @@ public interface List<T> extends Iterable<T> {
     int lastIndexOf(T value);
 
     String toString();
+
+    Iterator<T> iterator();
 }

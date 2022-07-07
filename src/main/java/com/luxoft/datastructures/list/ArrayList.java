@@ -1,92 +1,66 @@
 package com.luxoft.datastructures.list;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.IntStream;
 
-public class ArrayList implements List {
-    private int size;
-    private Object[] array = new Object[10];
+public class ArrayList<E> extends AbstractList<E> {
+    private static final double THRESHOLD = 1.5;
+    private static final int CAPACITY = 10;
+
+    private E[] array = (E[]) new Object[CAPACITY];
 
     @Override
-    public void add(Object value) {
+    public void add(E value) {
         add(value, size);
     }
 
-
     @Override
-    public void add(Object value, int index) {
-
-        if (index == size) {
-            capacity();
-        }
-
+    public void add(E value, int i) {
         checkNull(value);
-        if (size - index >= 0) {
-            System.arraycopy(array, index, array, index + 1, size - index);
-        }
-
-        size++;
-        array[index] = value;
-    }
-
-
-    private void capacity() {
-        Object[] newArray = new Object[array.length * 2];
-        System.arraycopy(array, 0, newArray, 0, array.length);
-        array = newArray;
-    }
-
-    private void checkMaxSize(int index) {
-        if (index >= size) {
-            throw new IndexOutOfBoundsException("Index " + index + " more than size ArrayList");
+        ensureCapacity();
+        if (array.length > 0) {
+            System.arraycopy(array, i, array, i + 1, size - i);
+            array[i] = value;
+            size++;
         }
     }
 
-    private void checkNull(Object value) {
-        if (value == null) {
-            throw new NullPointerException("Null element in value");
-        }
+    private void ensureCapacity() {
+        System.arraycopy(array, 0, new Object[(int) (array.length * THRESHOLD)], 0, size);
     }
-
 
     @Override
-    public Object remove(int index) {
+    public E remove(int i) {
+        check(i, size);
+        E node = array[i];
 
-        checkMaxSize(index);
+        if (i < size - 1) {
+            System.arraycopy(array, i + 1, array, i, size - i - 1);
+        }
+        array[--size] = null;
+        return node;
 
-        Object result = array[index];
-
-        IntStream.range(index, size).forEach(i -> array[i] = array[i + 1]);
-        array[size - 1] = null;
-        size--;
-
-        return result;
     }
 
-
+    //TODO
     @Override
-    public Object get(int index) {
-        checkMaxSize(index);
+    public E get(int index) {
+        check(index, size);
         return array[index];
-    }
-
-    @Override
-    public Object set(Object value, int index) {
-
-        checkMaxSize(index);
-        checkNull(value);
-
-        Object result = array[index];
-        array[index] = value;
-        return result;
     }
 
     @Override
     public void clear() {
         Arrays.fill(array, null);
         size = 0;
+    }
+
+    @Override
+    public E set(E value, int i) {
+        check(i, size);
+        E pre = array[i];
+        array[i] = value;
+        return pre;
     }
 
     @Override
@@ -100,70 +74,86 @@ public class ArrayList implements List {
     }
 
     @Override
-    public boolean contains(Object value) {
-        checkNull(value);
-
-        return indexOf(value) != -1;
+    public boolean contains(E value) {
+        return IntStream.range(0, size / 2).anyMatch(i -> Objects.equals(array[i], value) || Objects.equals(array[size - i - 1], value));
     }
 
     @Override
-    public int indexOf(Object value) {
-
-        checkNull(value);
-        int bound = array.length;
-        for (int i = 0; i < bound; i++) {
-            if (array[i] != null) {
-                if (array[i].equals(value)) {
-                    return i;
-                }
-            }
-        }
-
-        return -1;
+    public int indexOf(E value) {
+        return IntStream.range(0, size).filter(i -> Objects.equals(array[i], value)).findFirst().orElse(-1);
     }
 
     @Override
-    public int lastIndexOf(Object value) {
-
-        checkNull(value);
-
+    public int lastIndexOf(E value) {
         for (int i = size - 1; i >= 0; i--) {
-            if (array[i] != null) {
-                if (array[i].equals(value)) {
-                    return i;
-                }
+            if (Objects.equals(array[i], value)) {
+                return i;
             }
         }
         return -1;
     }
+
 
     @Override
     public String toString() {
-        StringJoiner stringJoiner = new StringJoiner(", ", "[", "]");
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (int i = 0; i < size; i++) {
-            stringJoiner.add(array[i].toString());
+            joiner.add(array[i].toString());
         }
-        return stringJoiner.toString();
+        return joiner.toString();
     }
 
-    public Iterator<Object> iterator() {
-        return new ArrayList.ListIterator();
+    @Override
+    public Iterator<E> iterator() {
+        return new ArrayListIterator();
     }
 
-    public class ListIterator implements Iterator<Object> {
-        private int index = 0;
+    private class ArrayListIterator implements Iterator<E> {
+        private int index;
 
         @Override
         public boolean hasNext() {
-            return index < size;
+            return index < size && (size != 0);
         }
 
         @Override
-        public Object next() {
-            Object value = array[index];
-            index++;
-            return value;
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("There is no such element");
+            }
+            return array[index++];
+        }
 
+        @Override
+        public void remove() {
+            if (index == 0) {
+                throw new UnsupportedOperationException("There is no elements for removing");
+            }
+            ArrayList.this.remove(--index);
         }
     }
+
+    private void check(int index, int size) {
+        checkMaxSize(index);
+        if (size == 0) {
+            throw new IllegalStateException("IllegalStateException");
+        }
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("IndexOutOfBoundsException:");
+        }
+    }
+
+    private void checkMaxSize(int index) {
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " more than size");
+        }
+    }
+
+    private void checkNull(E value) {
+        if (value == null) {
+            throw new NullPointerException("Null element in value");
+        }
+    }
+
+
 }

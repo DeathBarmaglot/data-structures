@@ -17,26 +17,27 @@ public class DoubleLinkedList<T> implements List<T> {
     @Override
     public void add(T value, int index) {
         checkNull(value);
+        // && value != null
 
         if (index >= 0) {
 
-            Node<T> newNode = new Node<>(value);
+            Node<T> node = new Node<>(value);
             if (size == 0) {
-                head = tail = newNode;
+                head = tail = node;
             } else if (index == size) {
                 tail.prev = tail;
-                tail.next = newNode;
-                newNode.prev = tail;
-                tail = newNode;
+                tail.next = node;
+                node.prev = tail;
+                tail = node;
             } else if (index == 0) {
-                head.prev = newNode;
-                newNode.next = head;
-                head = newNode;
+                head.prev = node;
+                node.next = head;
+                head = node;
             } else {
-                newNode.next = getNode(index);
-                newNode.prev = newNode.next.prev;
-                newNode.next.prev = newNode;
-                newNode.prev = newNode.next;
+                node.next = getNode(index);
+                node.prev = node.next.prev;
+                node.next.prev = node;
+                node.prev = node.next;
             }
             size++;
         }
@@ -136,12 +137,12 @@ public class DoubleLinkedList<T> implements List<T> {
     @Override
     public int lastIndexOf(T value) {
         checkNull(value);
-        Node<T> current = tail;
-        for (int index = size - 1; index >= 0; index--) {
-            if (value.equals(current.value)) {
-                return index;
+        Node<T> node = tail;
+        for (int i = size - 1; i >= 0; i--) {
+            if (value.equals(node.value)) {
+                return i;
             }
-            current = current.prev;
+            node = node.prev;
         }
         return -1;
     }
@@ -195,7 +196,7 @@ public class DoubleLinkedList<T> implements List<T> {
 
     private void checkRangeSize(int index) {
         if (0 > index || index >= size) {
-            throw new IndexOutOfBoundsException("Index " + index + " more than size ArrayList");
+            throw new IndexOutOfBoundsException("Index " + index + " more than size");
         }
     }
 }
